@@ -7,7 +7,7 @@ Future plans include exploring the CDF approach in more dimensions. This would a
 
 ### Methodology:
 1. For the "slow methods" <b> Bernoulli, Binomial, Geometric, Negative Binomial, Discrete Uniform, and Multinomial </b> distributions, I cut the number line between 0 and 1 into zones. For example, in a Bernoulli distribution with p = 0.7, there is a 70% chance of success. This is equivalent to the chance of realizing a U(0,1) under 0.7. In this case, values under 0.7 fall into the "success" zone, while values above 0.7 fall into the "fail" zone. Similarly, the uniform distribution has (b-a+1) zones of equal length, and the multinomial has (dim|<b>x</b>|) zones with their respective lengths totaling 1. This process was O(n), O(n*x), O(n*(a-b+1)), and O(dim|<b>x</b>| * n).
-2. For the "fast methods," I used stored values of the CDF in an array and binary search to find the x value from the realization.
+2. For the "fast methods," I stored values of the CDF in an array and used binary search to find the x value from the realization. O(n*log(n))
 3. For the <b> Exponential, Erlang, Weibull, Pareto1, and Cauchy </b> distributions, I set the CDF equal to the U(0,1) value and solved for x.
 4. For the "slow method" <b> Poisson </b> distribution, I summed up exponential wait times until they exceeded 1 and plotted the number of events that occurred before the sum reached 1. This process was Omega(n) and Theta(lambda). 
 5. For the <b> Standard Normal </b> distribution, I used the CLT and plotted sample means shifting by the overall mean and scaling by the overall sample variance.
